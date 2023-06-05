@@ -168,7 +168,7 @@
   </div>
 
   <div class="search-bar">
-    <input type="text" id="searchInput" oninput="filterMusic()">
+    <input type="text" id="searchInput" oninput="filterMusic()" placeholder="음악 제목 검색">
   </div>
 
   <script>
@@ -184,20 +184,20 @@
 
       if (currentAudio === element && currentAudio.paused) {
         currentAudio.play();
-        document.querySelector('.pause-overlay').classList.remove('show');
+        document.querySelector('.pause-overlay').style.display = 'flex';
         return;
       }
 
       currentAudio = new Audio(url);
       currentAudio.play();
-      document.querySelector('.pause-overlay').classList.add('show');
+      document.querySelector('.pause-overlay').style.display = 'flex';
     }
 
     // 음악 일시정지하는 JavaScript 함수
     function pauseMusic() {
       if (currentAudio) {
         currentAudio.pause();
-        document.querySelector('.pause-overlay').classList.remove('show');
+        document.querySelector('.pause-overlay').style.display = 'none';
       }
     }
 

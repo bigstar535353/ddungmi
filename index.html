@@ -17,7 +17,7 @@
       list-style-type: none;
       padding: 0;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(293px, 1fr));
       grid-gap: 20px;
     }
     
@@ -34,6 +34,32 @@
       margin-bottom: 10px;
     }
     
+    .music-title {
+      margin-bottom: 5px;
+    }
+    
+    .pause-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .pause-overlay.show {
+      display: flex;
+    }
+    
+    .pause-button {
+      color: white;
+      font-size: 48px;
+      cursor: pointer;
+    }
+    
     a {
       color: #337ab7;
       text-decoration: none;
@@ -47,29 +73,29 @@
 <body>
   <h1>시그니처 음악 목록(제목을 클릭하면 재생)</h1>  <ul>
     <li>
-      <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_220.mp3')">
+      <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_220.mp3', this)">
         <img class="music-image" src="https://bigstar535353.github.io/ddungmi/image/sig_220.png" alt="사마우코이">
       </a>
       <div class="music-title">
-        <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_220.mp3')">사마우코이</a>
+        <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_220.mp3', this)">사마우코이</a>
       </div>
     </li>
 
     <li>
-      <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_222.mp3')">
+      <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_222.mp3', this)">
         <img class="music-image" src="https://bigstar535353.github.io/ddungmi/image/sig_222.png" alt="빙글빙글">
       </a>
       <div class="music-title">
-        <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_220.mp3')">빙글빙글</a>
+        <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_220.mp3', this)">빙글빙글</a>
       </div>
     </li>
 
     <li>
-      <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_312.mp3')">
+      <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_312.mp3', this)">
         <img class="music-image" src="https://bigstar535353.github.io/ddungmi/image/sig_312.png" alt="올아이워너두">
       </a>
       <div class="music-title">
-        <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_312.mp3')">올아이워너두</a>
+        <a href="#" onclick="playMusic('https://bigstar535353.github.io/ddungmi/sound/sig_312.mp3', this)">올아이워너두</a>
       </div>
     </li>
 
@@ -78,11 +104,36 @@
     <!-- 음악 목록 추가 -->
   </ul>
 
+  <div class="pause-overlay">
+    <span class="pause-button" onclick="pauseMusic()">&#10074;&#10074;</span>
+  </div>
+
   <script>
+    var currentAudio = null;
+
     // 음악 파일을 재생하는 JavaScript 함수
-    function playMusic(url) {
-      var audio = new Audio(url);
-      audio.play();
+    function playMusic(url, element) {
+      if (currentAudio && currentAudio !== element) {
+        currentAudio.pause();
+      }
+
+      if (currentAudio === element && currentAudio.paused) {
+        currentAudio.play();
+        document.querySelector('.pause-overlay').classList.remove('show');
+        return;
+      }
+
+      currentAudio = element;
+      currentAudio.play();
+      document.querySelector('.pause-overlay').classList.add('show');
+    }
+
+    // 음악 일시정지하는 JavaScript 함수
+    function pauseMusic() {
+      if (currentAudio) {
+        currentAudio.pause();
+        document.querySelector('.pause-overlay').classList.remove('show');
+      }
     }
   </script>
 </body>

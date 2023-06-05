@@ -107,6 +107,10 @@
     <button class="tab-button" onclick="changeTab(event, 'music2')">누르지마셈2</button>
   </div>
 
+  <div class="search-bar">
+    <input type="text" id="searchInput" oninput="filterMusic()" placeholder="시그니처 검색">
+  </div>
+
   <div id="signature" class="music-list">
     <ul>
       <li>
@@ -681,10 +685,6 @@
 
   <div class="pause-overlay">
     <span class="pause-button" onclick="pauseMusic()">&#10074;&#10074;</span>
-  </div>
-
-  <div class="search-bar">
-    <input type="text" id="searchInput" oninput="filterMusic()" placeholder="음악 제목 검색">
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>

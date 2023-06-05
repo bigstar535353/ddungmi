@@ -101,8 +101,6 @@
   </style>
 </head>
 <body>
-  <h1>음악 파일 목록</h1>
-
   <div class="tab-menu">
     <button class="tab-button selected" onclick="changeTab(event, 'signature')">시그니처음악</button>
     <button class="tab-button" onclick="changeTab(event, 'music1')">누르지마셈1</button>
@@ -167,6 +165,19 @@
         </div>
       </li>
 
+      <li>
+        <div class="music-info">
+          <a href="#" onclick="playMusic(event, 'https://bigstar535353.github.io/ddungmi/sound/sig_332.mp3', this)">
+            <img class="music-image" src="https://bigstar535353.github.io/ddungmi/image/sig_332.png" alt="음악 1 이미지">
+          </a>
+          <div class="music-title">
+            <a href="#" onclick="playMusic(event, 'https://bigstar535353.github.io/ddungmi/sound/sig_332.mp3', this)">나문희의첫사랑</a>
+            <a href="https://bigstar535353.github.io/ddungmi/sound/sig_332.mp3" download>
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+        </div>
+      </li>
 
     </ul>
   </div>
